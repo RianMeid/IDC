@@ -21,6 +21,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 public class MainActivity extends AppCompatActivity{
     Button button;
 
@@ -45,7 +48,13 @@ public class MainActivity extends AppCompatActivity{
                     double lat = l.getLatitude();
                     double lon = l.getLongitude();
                     Toast.makeText(getApplicationContext(),"LAT: "+ lat+ "\n LON: "+lon,Toast.LENGTH_LONG).show();
-                    System.out.println(lat+lon);
+                    System.out.println("lat="+lat+"lon = "+lon);
+                    GoogleConnector gc = new GoogleConnector();
+                    try {
+                        gc.Httpsrequest(lon, lat);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
