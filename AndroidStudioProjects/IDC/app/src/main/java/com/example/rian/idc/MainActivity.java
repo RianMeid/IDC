@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity{
                     double lat = l.getLatitude();
                     double lon = l.getLongitude();
                     Toast.makeText(getApplicationContext(),"LAT: "+ lat+ "\n LON: "+lon,Toast.LENGTH_LONG).show();
-                    System.out.println("lat="+lat+"lon = "+lon);
+
                     GoogleConnector gc = new GoogleConnector();
                     try {
                         gc.Httpsrequest(lon, lat);
