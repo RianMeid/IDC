@@ -1,5 +1,7 @@
 package com.example.rian.idc;
 
+import org.json.JSONArray;
+
 import java.io.InputStreamReader;
 
 /**
@@ -9,7 +11,7 @@ import java.io.InputStreamReader;
 public class googlemodel {
     private Double lon;
     private Double lat;
-    private InputStreamReader inputStreamReader;
+    private JSONArray js;
 
 
     public void setLon(Double lon) {
@@ -20,8 +22,8 @@ public class googlemodel {
         this.lat = lat;
     }
 
-    public void setInputStreamReader(InputStreamReader inputStreamReader) {
-        this.inputStreamReader = inputStreamReader;
+    public void setJSONresults(JSONArray jsonArray) {
+        this.js = jsonArray;
     }
 
 
@@ -34,8 +36,8 @@ public class googlemodel {
         return lat;
     }
 
-    public InputStreamReader getInputStreamReader() {
-        return inputStreamReader;
+    public JSONArray getJSONarray() {
+        return js;
     }
 
 

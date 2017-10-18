@@ -20,7 +20,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by Rian on 01/10/2017.
  */
 
-public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReader>{
+public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
     String GoogleAPI = "AIzaSyCwnzbDHsrYfadm_MFuqpzQJ1KVH4I1aow";
     public InputStreamReader x;
     public Double lo;
@@ -29,7 +29,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
 
 
 
-    public void Httpsrequest (double lon,double lat) throws IOException{
+    public JSONObject Httpsrequest (double lon,double lat) throws IOException{
 
         googlemodel m = new googlemodel();
         this.lo=lon;
@@ -41,8 +41,9 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
         m.setLon(lon);
         GoogleConnector g = new GoogleConnector();
         try {
-            InputStreamReader i = g.execute(la,lo).get();
-            System.out.println(i+"dis one");
+            JSONObject i = g.execute(la,lo).get();
+            return i;
+
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -57,7 +58,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
 
 
 
-
+        return null;
 
 
 
@@ -67,7 +68,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
 
 
     @Override
-    protected InputStreamReader doInBackground(Double... lat) {
+    protected JSONObject doInBackground(Double... lat)   {
         //lat first lon last
         try {
 
@@ -84,13 +85,8 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
             while ((input = s.readLine())!= null)
                 stringBuilder.append(input);
             JSONObject jsonObject = new JSONObject(stringBuilder.toString());
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
-            for (int i = 0; i< jsonArray.length(); i++){
-                String st = jsonArray.getJSONObject(i).getString("name");
-                System.out.println(st);
-            }
 
-            return in;
+            return jsonObject;
 
         }catch (IOException E){
             E.printStackTrace();
@@ -101,9 +97,9 @@ public class GoogleConnector extends AsyncTask<Double, Integer, InputStreamReade
 
     }
     @Override
-    protected void onPostExecute(InputStreamReader in){
+    protected void onPostExecute(JSONObject in){
         System.out.println(in);
-        this.x = in;
+
 
     }
 
