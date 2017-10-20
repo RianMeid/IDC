@@ -12,6 +12,7 @@ public class googlemodel {
     private Double lon;
     private Double lat;
     private JSONArray js;
+    private int distance;
 
 
     public void setLon(Double lon) {
@@ -26,6 +27,8 @@ public class googlemodel {
         this.js = jsonArray;
     }
 
+    public void setDistance(int d){ this.distance = d;}
+
 
 
     public Double getLon() {
@@ -39,6 +42,8 @@ public class googlemodel {
     public JSONArray getJSONarray() {
         return js;
     }
+
+    public int getDistance(){return distance;}
 
 
 

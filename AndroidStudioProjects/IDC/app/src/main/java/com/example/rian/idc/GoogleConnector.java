@@ -29,7 +29,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
 
 
 
-    public JSONObject Httpsrequest (double lon,double lat) throws IOException{
+    public JSONObject Httpsrequest (double lon,double lat, int distance) throws IOException{
 
         googlemodel m = new googlemodel();
         this.lo=lon;
@@ -41,7 +41,9 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         m.setLon(lon);
         GoogleConnector g = new GoogleConnector();
         try {
-            JSONObject i = g.execute(la,lo).get();
+            double d = (double) distance;
+            JSONObject i = g.execute(la,lo,d).get();
+            System.out.println(i);
             return i;
 
 
@@ -50,7 +52,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        System.out.println(x+"lol");
+
 
 
 
@@ -73,7 +75,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         try {
 
             System.out.println("lat= "+lat[0]+"lon= "+lat[1]);
-            URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Double.toString(lat[0])+","+Double.toString(lat[1])+"&radius=5000&type=restaurant&key=AIzaSyBijvlQv6Ao4yIm4rl7sG21lPACMDxI23g");
+            URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Double.toString(lat[0])+","+Double.toString(lat[1])+"&radius="+Double.toString(lat[2])+"&type=restaurant&keyword=eten&key=AIzaSyBijvlQv6Ao4yIm4rl7sG21lPACMDxI23g");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(con.getInputStream());
             System.out.println(con.getResponseMessage());
