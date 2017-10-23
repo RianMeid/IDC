@@ -35,7 +35,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         this.lo=lon;
         this.la=lat;
         if (la == null){
-            System.out.println("lat in http is null");
+
         }
         m.setLat(lat);
         m.setLon(lon);
@@ -43,7 +43,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         try {
             double d = (double) distance;
             JSONObject i = g.execute(la,lo,d).get();
-            System.out.println(i);
+
             return i;
 
 
@@ -74,20 +74,19 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
         //lat first lon last
         try {
 
-            System.out.println("lat= "+lat[0]+"lon= "+lat[1]);
+
             URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Double.toString(lat[0])+","+Double.toString(lat[1])+"&radius="+Double.toString(lat[2])+"&type=restaurant&keyword=eten&key=AIzaSyBijvlQv6Ao4yIm4rl7sG21lPACMDxI23g");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(con.getInputStream());
-            System.out.println(con.getResponseMessage());
 
-            System.out.println("connection made");
+
+
             BufferedReader s = new BufferedReader(in);
             StringBuilder stringBuilder = new StringBuilder();
             String input;
             while ((input = s.readLine())!= null)
                 stringBuilder.append(input);
             JSONObject jsonObject = new JSONObject(stringBuilder.toString());
-
             return jsonObject;
 
         }catch (IOException E){
@@ -100,7 +99,7 @@ public class GoogleConnector extends AsyncTask<Double, Integer, JSONObject>{
     }
     @Override
     protected void onPostExecute(JSONObject in){
-        System.out.println(in);
+
 
 
     }

@@ -57,19 +57,22 @@ public class MainActivity extends ListActivity{
 
             @Override
             public void onClick(View v){
-                System.out.println("button pressed");
                 GPStracker g = new GPStracker(getApplicationContext());
                 Location l = g.getLocation();
 
                 if (l != null){
                     double lat = l.getLatitude();
                     double lon = l.getLongitude();
-                    Toast.makeText(getApplicationContext(),"LAT: "+ lat+ "\n LON: "+lon,Toast.LENGTH_LONG).show();
+
 
                     GoogleConnector gc = new GoogleConnector();
                     try {
                         JSONObject j = gc.Httpsrequest(lon, lat, Integer.parseInt((String) button1.getText()));
                         JSONArray jsonArray = j.getJSONArray("results");
+                        System.out.println(jsonArray);
+                        if (jsonArray == null){
+                            Toast.makeText(MainActivity.this,"No internet connection",Toast.LENGTH_LONG).show();
+                        }
                         googlemodel m = new googlemodel();
                         m.setJSONresults(jsonArray);
                         List<String> results = new ArrayList<String>();
@@ -77,7 +80,6 @@ public class MainActivity extends ListActivity{
                         for (int i = 0; i< jsonArray.length(); i++){
                             String st = jsonArray.getJSONObject(i).getString("name");
                             String re = jsonArray.getJSONObject(i).getString("rating");
-                            System.out.println(st);
                             results.add(st+System.getProperty("line.separator")+"Rating:"+re);
                             rating.add(re);
                         }
@@ -99,6 +101,8 @@ public class MainActivity extends ListActivity{
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }catch (NullPointerException e){
+                        System.out.println("It's a null");
+                        Toast.makeText(MainActivity.this,"No connection",Toast.LENGTH_LONG).show();
                         e.printStackTrace();
 
                     }
@@ -112,7 +116,7 @@ public class MainActivity extends ListActivity{
 
             @Override
             public void onClick(View view) {
-                System.out.println(button1.getText());
+
                 if (Integer.parseInt((String) button1.getText()) == 500){
                     button1.setText("1000");
 
