@@ -120,10 +120,10 @@ public class MainActivity extends ListActivity{
             public void onClick(View view) {
 
                 if (Integer.parseInt((String) button1.getText()) == 500){
-                    button1.setText("1000");
+                    button1.setText("2000");
 
                 }else  {
-                    if (Integer.parseInt((String) button1.getText()) == 1000){
+                    if (Integer.parseInt((String) button1.getText()) == 2000){
                         button1.setText("5000");
 
                     }else {
