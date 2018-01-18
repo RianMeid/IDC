@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="5000dp"
+        app:contentPaddingRight="10dp"
+        app:contentPaddingLeft="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Titel"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:id="@+id/imagerestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@color/cardview_light_background"
+                android:layout_below="@id/titel"/>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar3"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"/>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:layout_marginTop="10dp"
+                android:isIndicator="true"
+                android:layout_gravity="center_vertical"
+                android:layout_below="@id/imagerestaurant"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textSize="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/ratingBar"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView3"/>
+
+            <TextView
+                android:id="@+id/vicinitytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:layout_below="@id/progressBar2"
+                android:layout_marginTop="30dp"
+                android:textSize="17dp"/>
+
+            <Button
+                android:id="@+id/Favbut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favourite"
+                android:layout_marginTop="61dp"
+                android:layout_below="@+id/progressBar2"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
